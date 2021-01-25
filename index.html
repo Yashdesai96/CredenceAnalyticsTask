@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Get movie info based on IMDb ID">
+  
+  <title>OMDb</title>
+  
+  <style>
+  body {
+    font-family: 'Rokkitt', serif;
+    margin: 0;
+  }
+  table.dark {
+    border: 2px solid #000000;
+    background-color: #515151;
+    border-collapse: collapse;
+  }
+  table.dark td {
+    border: 1px solid #4A4A4A;
+    padding: 6px 6px;
+    font-size: 18px;
+    color: #FFFF22;
+  }
+  table.dark tr:nth-child(even) {
+    background: #000000;
+  }
+  h1 {
+    margin-left: 50px;
+  }
+  h1 > span {
+    color:#0000ff;
+  }
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 100%;
+}
+  </style>
+</head>
+
+<body class="container" style="padding-top: 80px; background-color: #753741; color: white;"  align="center">
+  
+    
+<div id="app" style="background-color: black;">
+    <h1>OMDB Movie Search</h1>
+    <input type="text" ref="groupId" id="myText" name="myText">
+    <button type="submit" @click='getId()'>Search</button>
+    <br>
+   <table class="dark" align="center">
+     <tr>
+       <td> <h3>{{ newdata.title }} {{ newdata.year }}</h3> </td>
+     </tr>
+     <tr>
+      <td> <a v-on:mouseover = "display" v-on:mouseout = "hide">{{ newdata.img }}</a></td>
+    </tr>
+    <tr id='ta3'style='display:none'>
+      <td> {{ newdata.genre }}</td>
+    </tr>
+    <tr id='ta4'style='display:none'>
+      <td> {{ newdata.actors }}</td>
+    </tr>
+      <tr>
+        <td>
+          <h3>
+            {{ results.Title }} {{ results.Year }}
+          </h3>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          <a v-on:mouseover = "display" v-on:mouseout = "hide"><img :src="results.Poster" width="200" id='img'></a>
+        </td>
+      </tr>
+      <tr id='ta'style='display:none'>
+        <td>
+          {{ results.Genre }}
+        </td>
+      </tr>
+      <tr id='ta1'style='display:none'>
+        <td>  
+          {{ results.Actors }}
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+
+    <table align="center" style="padding-top: 30px;">
+      <h3>Fill the form to upload movie</h3>
+      <br>
+      <tr>
+        <td>
+          <label for="formFile" class="form-label"><h4>Movie Name:</h4></label>
+          <input type="text" id="title" placeholder="Enter movie name" v-model="newdata.title"><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="formFile" class="form-label"><h4>Year:</h4></label>
+          <input type="text" name="year" id="year" placeholder="Enter movie year" v-model="newdata.year"><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="mb-3">
+  <label for="formFileMultiple" class="form-label"></label>
+  <input class="form-control" type="file" id="img" multiple v-model="newdata.img">
+</div>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="formFile" class="form-label"><h4>Genre:</h4></label>
+          <input type="text" id="genre" placeholder="Enter movie genre" v-model="newdata.genre"><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="formFile" class="form-label"><h4>Actors:</h4></label>
+          <input type="text" id="actors" placeholder="Enter movie actors" v-model="newdata.actors"><br>
+        </td>
+      </tr>
+      <tr>
+      <td>
+        <button type="submit" @click='add()'>Submit</button>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script> 
+  <script src="https://unpkg.com/vue"></script> 
+</body>
+</html>
